@@ -1,11 +1,11 @@
-from task.task_model import Task
+from task.task_model import TaskModel
 from core.utils.create_error import create_error
 from playhouse.shortcuts import model_to_dict
 
 
 def create_task(name):
     try:
-        task = Task.create(name=name)
+        task = TaskModel.create(name=name)
         task.save()
 
         return None, model_to_dict(task)
@@ -15,7 +15,7 @@ def create_task(name):
 
 def get_tasks():
     try:
-        tasks = Task.select()
+        tasks = TaskModel.select()
 
         tasks_list = list(tasks.dicts())
 
