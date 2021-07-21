@@ -1,4 +1,4 @@
-from task.model import Task
+from task.task_model import Task
 from core.utils.create_error import create_error
 from playhouse.shortcuts import model_to_dict
 
