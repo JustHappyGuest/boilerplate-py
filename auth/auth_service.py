@@ -1,13 +1,13 @@
 from flask_jwt_extended import create_access_token
 
-from auth.auth_model import User
+from auth.auth_model import UserModel
 from core.utils.create_error import create_error
 from core.utils.encrypt_password import encrypt_password
 from core.constants import ACCESS_EXPIRES
 
 
 def login_user(login, password):
-    user = User.select().where(User.login == login).first()
+    user = UserModel.select().where(UserModel.login == login).first()
 
     if not user:
         return create_error(400, 'Пользователь с таким логином не найден'), None
@@ -24,14 +24,14 @@ def login_user(login, password):
 
 def register_user(login, password):
 
-    user = User.select().where(User.login == login).first()
+    user = UserModel.select().where(UserModel.login == login).first()
 
     if user:
         return create_error(400, 'Пользователь с таким логином существует'), None
 
     password_md5 = encrypt_password(password)
 
-    user_created = User.create(login=login, password=password_md5)
+    user_created = UserModel.create(login=login, password=password_md5)
     user_created.save()
 
     return None, user
