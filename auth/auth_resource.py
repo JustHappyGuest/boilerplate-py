@@ -2,7 +2,7 @@ from flask import jsonify
 from flask_restful import Resource, reqparse
 from flask_jwt_extended import get_jwt, jwt_required
 
-from auth.service import register_user, login_user
+from auth.auth_service import register_user, login_user
 from core.dbs.redis_db import redis_connection
 from core.constants import ACCESS_EXPIRES
 

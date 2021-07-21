@@ -1,5 +1,5 @@
-from task.model import Task
-from auth.model import User
+from task.task_model import Task
+from auth.auth_model import User
 
 
 def init_db():

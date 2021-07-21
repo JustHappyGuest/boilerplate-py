@@ -1,6 +1,6 @@
 from flask_jwt_extended import create_access_token
 
-from auth.model import User
+from auth.auth_model import User
 from core.utils.create_error import create_error
 from core.utils.encrypt_password import encrypt_password
 from core.constants import ACCESS_EXPIRES

@@ -1,3 +1,3 @@
 from peewee import SqliteDatabase
 
-sqlit_connection = SqliteDatabase("golden-eye.db")
+sqlite_connection = SqliteDatabase("golden-eye.db")
