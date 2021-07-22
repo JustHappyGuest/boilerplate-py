@@ -1,9 +1,6 @@
 import os
 from flask import Flask
 from flask_restful import Api
-from apispec import APISpec
-from apispec.ext.marshmallow import MarshmallowPlugin
-from flask_apispec.extension import FlaskApiSpec
 
 from core.register_resources import register_resources
 from core.utils.init_db import init_db
