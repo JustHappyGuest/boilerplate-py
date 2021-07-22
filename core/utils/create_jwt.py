@@ -1,7 +1,9 @@
 from flask_jwt_extended import JWTManager
 from os import environ
+from playhouse.shortcuts import model_to_dict
 
 from core.dbs.redis_db import redis_connection
+from auth.auth_model import UserModel
 
 SECRET = environ.get("SECRET")
 
@@ -15,5 +17,16 @@ def create_jwt(app):
         jti = jwt_payload["jti"]
         token_in_redis = redis_connection.get(jti)
         return token_in_redis is not None
+    
+    @jwt.user_lookup_loader
+    def user_lookup_callback(_, jwt_data):
+        identity = jwt_data["sub"]
+
+        user = UserModel.get_or_none(UserModel.login == identity)
+        
+        if not user:
+            return None
+
+        return user
 
     return jwt
