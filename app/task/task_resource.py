@@ -2,7 +2,7 @@ from flask import jsonify
 from flask_restful import Resource, reqparse
 from flask_jwt_extended import jwt_required, current_user
 
-from task.task_service import create_task, get_tasks
+from .task_service import create_task, get_tasks
 
 
 class TaskListResource(Resource):

@@ -1,6 +1,6 @@
 from peewee import CharField
 
-from core.base_model import BaseModel
+from app.core.base_model import BaseModel
 
 
 class UserModel(BaseModel):

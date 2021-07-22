@@ -1,10 +1,10 @@
 from flask_jwt_extended import create_access_token
 
-from auth.auth_model import UserModel
-from core.utils.create_error import create_error
-from core.utils.encrypt_password import encrypt_password
-from core.constants import ACCESS_EXPIRES
+from app.core.utils.create_error import create_error
+from app.core.utils.encrypt_password import encrypt_password
+from app.core.constants import ACCESS_EXPIRES
 
+from .auth_model import UserModel
 
 def login_user(login, password):
     user = UserModel.select().where(UserModel.login == login).first()
