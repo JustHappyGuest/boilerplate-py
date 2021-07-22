@@ -2,8 +2,8 @@ from flask_jwt_extended import JWTManager
 from os import environ
 from playhouse.shortcuts import model_to_dict
 
-from core.dbs.redis_db import redis_connection
-from auth.auth_model import UserModel
+from app.core.dbs.redis_db import redis_connection
+from app.auth.auth_model import UserModel
 
 SECRET = environ.get("SECRET")
 

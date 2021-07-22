@@ -1,8 +1,8 @@
 from playhouse.shortcuts import model_to_dict
 
-from task.task_model import TaskModel
-from core.utils.create_error import create_error
+from app.core.utils.create_error import create_error
 
+from .task_model import TaskModel
 
 def create_task(current_user, name):
     try:
