@@ -1,6 +1,6 @@
 from flask import jsonify
 from flask_restful import Resource, reqparse
-from flask_jwt_extended import jwt_required
+from flask_jwt_extended import jwt_required, current_user
 
 from task.task_service import create_task, get_tasks
 
@@ -15,7 +15,7 @@ class TaskListResource(Resource):
 
         name = data['name']
 
-        error, task = create_task(name)
+        error, task = create_task(current_user, name)
 
         if error:
             return error
@@ -24,7 +24,7 @@ class TaskListResource(Resource):
 
     @jwt_required()
     def get(self):
-        error, tasks = get_tasks()
+        error, tasks = get_tasks(current_user)
 
         if error:
             return error
