@@ -3,3 +3,5 @@ venv/
 .env
 __pycache__
 golden-eye.db
+data/db
+postgres-data

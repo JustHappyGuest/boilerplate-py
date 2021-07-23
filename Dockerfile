@@ -4,7 +4,9 @@ WORKDIR /app
 ENV FLASK_APP=main.py
 ENV FLASK_RUN_HOST=0.0.0.0
 ENV FLASK_RUN_PORT=8085
-RUN apk add --no-cache gcc musl-dev linux-headers
+RUN apk update && \
+    apk add --virtual build-deps gcc python3-dev musl-dev && \
+    apk add postgresql-dev
 COPY requirements.txt requirements.txt
 RUN pip install -r requirements.txt
 EXPOSE 8085
