@@ -18,14 +18,4 @@ def create_app():
     register_resources(Api(app, prefix=API_PREFIX))
     create_jwt(app)
 
-    @app.before_request
-    def before_request():
-        postgresql_connection.connect()
-
-    @app.after_request
-    def after_request(response):
-        postgresql_connection.close()
-        return response
-
-
     return app
