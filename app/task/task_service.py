@@ -10,14 +10,14 @@ def create_task(current_user, name):
         task.save()
 
 
-        return None, model_to_dict(task)
+        return None, {"name": task.name, "id": task.id}
     except NameError:
         return create_error(500, NameError), None
 
 
 def get_tasks(current_user):
     try:
-        tasks = TaskModel.select().where(TaskModel.user_id == current_user.id)
+        tasks = TaskModel.select(TaskModel.name, TaskModel.id).where(TaskModel.user_id == current_user.id)
 
         tasks_list = list(tasks.dicts())
 
@@ -26,6 +26,9 @@ def get_tasks(current_user):
         return create_error(500, NameError), None
 
 
-
-
-
+def delete_task(current_user, task_id):
+    try:
+        task = TaskModel.get(TaskModel.user_id == current_user.id, TaskModel.id == task_id)
+        task.delete_instance()
+    except NameError:
+        return create_error(500, NameError), None
