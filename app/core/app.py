@@ -2,7 +2,7 @@ import os
 from flask import Flask
 from flask_restful import Api
 
-from .dbs.sqlite_db import sqlite_connection
+from .dbs.postgres_db import postgresql_connection
 from .register_resources import register_resources
 from .utils.init_db import init_db
 from .utils.create_jwt import create_jwt
@@ -20,11 +20,11 @@ def create_app():
 
     @app.before_request
     def before_request():
-        sqlite_connection.connect()
+        postgresql_connection.connect()
 
     @app.after_request
     def after_request(response):
-        sqlite_connection.close()
+        postgresql_connection.close()
         return response
 
 
